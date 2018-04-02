@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     'users',
     'profiles',
+    'organizations',
     #'pages',
     #'dashboard',
 ]
@@ -105,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
@@ -140,7 +141,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_MIN_LENGTH = 3
-ACCOUNT_EMAIL_VERIFICATION = 'optional'  # set this to 'mandatory'?
+ACCOUNT_EMAIL_VERIFICATION = 'optional'  # set this to 'mandatory' or limit usage based on verification?
 ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_USER_MODEL_EMAIL_FIELD = 'email'
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True

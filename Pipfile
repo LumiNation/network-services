@@ -10,5 +10,7 @@ django-crispy-forms = "*"
 pylint = "*"
 sequential = "*"
 django-admin = "*"
+django-organizations = "*"
+django-extensions = "*"
 
 [dev-packages]

@@ -9,7 +9,7 @@ from profiles.models import DonorProfile as Profile
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
-    verbose_name_plural = 'Profile'
+    verbose_name_plural = 'Profiles'
     fk_name = 'user'
 
 class CustomUserAdmin(UserAdmin):

@@ -4,51 +4,50 @@ from users.models import CustomUser as User
 from django.dispatch import receiver
 
 class DonorProfile(models.Model):
-	def __str__(self): 
-		return self.user.username
+    def __str__(self):
+        return self.user.username
 
-	# Identification
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	birthdate = models.DateField(null=True, blank=True)
-	zipcode = models.CharField(blank=True, max_length=5)
+    # Identification
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    birthdate = models.DateField(null=True, blank=True)
+    zipcode = models.CharField(blank=True, max_length=5)
 
-	# Giving Statistics
-	#donations: list[Donation]
-	#donation_tot: big-int			- evaluated
-	#social_score: big-int
-	#donor_dollars: big-int
-	#causes_reported: list[Cause] 
-	#causes_supported: list[Cause]	- evaluated
-	
-	# Project Info
-	#proj_following: list[Project]
-	#proj_supported: list[Project]	- evaluated
-	#proj_fav: list[Project]
-	#spon_supported: list[Sponsor]	- evaluated
-	#spon_fav: list[Sponsor]		
+    # Giving Statistics
+    #donations: list[Donation]
+    #donation_tot: big-int          - evaluated
+    #social_score: big-int
+    #donor_dollars: big-int
+    #causes_reported: list[Cause]
+    #causes_supported: list[Cause]  - evaluated
+
+    # Project Info
+    #proj_following: list[Project]
+    #proj_supported: list[Project]  - evaluated
+    #proj_fav: list[Project]
+    #spon_supported: list[Sponsor]  - evaluated
+    #spon_fav: list[Sponsor]
 
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-	if created:
-		DonorProfile.objects.create(user=instance)
+    if created:
+        DonorProfile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-	DonorProfile.objects.get(user=instance).save()
+    DonorProfile.objects.get(user=User).save()
 
 
 """
 class SponsorProfile(models.Model):
-	def __str__(self): 
-		return self.user.username
+    def __str__(self): 
+        return self.user.username
 
-	# Identification
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	birthdate = models.DateField(null=True, blank=True)
-	zipcode = models.CharField(blank=True, max_length=5)
+    # Identification
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    birthdate = models.DateField(null=True, blank=True)
+    zipcode = models.CharField(blank=True, max_length=5)
 """
-
 
 
 """
@@ -56,15 +55,15 @@ STUDENT = 1
 TEACHER = 2
 SUPERVISOR = 3
 ROLE_CHOICES = (
-	(STUDENT, 'Student'),
-	(TEACHER, 'Teacher'),
-	(SUPERVISOR, 'Supervisor'),
+    (STUDENT, 'Student'),
+    (TEACHER, 'Teacher'),
+    (SUPERVISOR, 'Supervisor'),
 )
 role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
 
 def was_published_recently(self):
-	now = timezone.now()
-	return now - datetime.timedelta(days=1) <= self.pub_date <= now
+    now = timezone.now()
+    return now - datetime.timedelta(days=1) <= self.pub_date <= now
 was_published_recently.admin_order_field = 'pub_date'
 was_published_recently.short_description = 'Published recently?'
 """
