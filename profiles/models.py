@@ -3,7 +3,7 @@ from django.db.models.signals import post_save
 from users.models import CustomUser as User
 from django.dispatch import receiver
 
-class DonorProfile(models.Model):
+class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
@@ -30,24 +30,18 @@ class DonorProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+    """
+    create profile to match user
+    """
     if created:
-        DonorProfile.objects.create(user=instance)
+        UserProfile.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    DonorProfile.objects.get(user=User).save()
+    UserProfile.objects.get(user=User).save()
 
 
-"""
-class SponsorProfile(models.Model):
-    def __str__(self): 
-        return self.user.username
-
-    # Identification
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birthdate = models.DateField(null=True, blank=True)
-    zipcode = models.CharField(blank=True, max_length=5)
-"""
 
 
 """

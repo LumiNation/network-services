@@ -4,13 +4,14 @@ from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
-from profiles.models import DonorProfile as Profile
+from profiles.models import UserProfile
 
 class ProfileInline(admin.StackedInline):
-    model = Profile
+    model = UserProfile
     can_delete = False
     verbose_name_plural = 'Profiles'
     fk_name = 'user'
+
 
 class CustomUserAdmin(UserAdmin):
     fieldsets = [

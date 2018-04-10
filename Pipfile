@@ -12,5 +12,7 @@ sequential = "*"
 django-admin = "*"
 django-organizations = "*"
 django-extensions = "*"
+ipython = "*"
+werkzeug = "*"
 
 [dev-packages]
