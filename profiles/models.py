@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     birthdate = models.DateField(null=True, blank=True)
     zipcode = models.CharField(blank=True, max_length=5)
 
+
     # Giving Statistics
     #donations: list[Donation]
     #donation_tot: big-int          - evaluated
