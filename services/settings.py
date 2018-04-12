@@ -27,20 +27,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    # imported modules
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
     'crispy_forms',
     'django_extensions',
-    
-    'users',
-    'profiles',
     'organizations',
+
+    # object-oriented modules
+    'users',
+    'donors',
+    'projects',
+    'sponsors',
+
+    # info-share modules
     'sectors',
-    
     'pages',
-    #'dashboard',
 ]
 
 MIDDLEWARE = [

@@ -4,12 +4,12 @@ from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
-from profiles.models import UserProfile
+from donors.models import Donor
 
-class ProfileInline(admin.StackedInline):
-    model = UserProfile
+class DonorInline(admin.StackedInline):
+    model = Donor
     can_delete = False
-    verbose_name_plural = 'Profiles'
+    verbose_name_plural = 'Donor Profile'
     fk_name = 'user'
 
 
@@ -21,7 +21,7 @@ class CustomUserAdmin(UserAdmin):
         ('Important Dates', {'fields': ['date_joined', 'last_login'], 'classes': ['collapse']}),
     ]
 
-    inlines = [ProfileInline, ]
+    inlines = [DonorInline, ]
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
